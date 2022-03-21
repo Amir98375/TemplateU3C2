@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label for="">enter otp here</label>
+    <input type="number" required>
+    <a><button onclick="al()">pay & continue shopping</button></a><br>
+    otp random 12345
+</body>
+</html>
+<script>
+    function al1(){
+        alert("Your order is accepted ")
+    }
+    function al2(){
+        alert("Your order is being cooked ")
+    }
+    function al3(){
+        alert("Your order is ready ")
+    }
+    function al4(){
+        alert("Order out for delivery  ")
+    }
+    function al5(){
+        alert("Order delivered")
+    }
+    function al(){
+        setTimeout(al1,0)
+        setTimeout(al2,3000)
+        setTimeout(al3,11000)
+        setTimeout(al4,18000)
+        setTimeout(al5,20000)
+
+    }
+</script>

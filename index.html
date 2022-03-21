@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <style>
+      #navbar{
+       height: 70px;
+       width: 100%; 
+       display: flex;
+      
+       background-color: whitesmoke;
+
+      }
+      #menu2{
+        justify-content: space-around;
+        display: flex;
+       
+        width: 30%;
+        margin-left: 70%;
+
+      }
+    
+      
+      #menu{
+              width: 100%;
+              display: grid;
+              grid-template-columns: repeat(4,1fr);
+              gap: 20px;
+              margin: auto;
+              margin-top: 50px;
+              
+      }
+      .g{
+        width: 100%;
+        height: 350px;
+        
+      }
+      img{
+        height: 50%;
+        width: 100%;
+      }
+      p{
+        line-height: 15px;
+      }
+
+    </style>
+  </head>
+
+  <body>
+
+    <div id="navbar">
+     
+      <!--Add menu divs here-->
+      <div id="menu2">
+        <p>menu </p>
+        <p>sign in</p>
+        <p>sign up</p>
+      <a href="cart.html"><p>cart</p></a> 
+      </div>
+
+      <div id="count"></div>
+    </div>
+
+    <div id="menu">
+             <!-- <div class="g">
+               <img src="https://images.unsplash.com/photo-1644172490455-24d27a8cd099?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" alt="">
+            <p id="price">price</p>
+            <p id="desc">description</p>
+            <p id="cat">category</p>
+              </div> -->
+            
+      <!--Show indian dishes here in grid format-->
+      <!-- add an add to cart button to each dish, give it HTML id as 'addtocart' -->
+
+    </div>
+  </body>
+
+</html>
+<script>
+  var dataArray =JSON.parse(localStorage.getItem("cart"))||[]
+     fetchData()
+  async function fetchData(){
+    var res = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?a=Indian`)
+    var data = await res.json(res)
+    //console.log(data)
+    showdata(data.meals)
+  }
+
+  var obj ={
+    price:100,
+    price:4000,
+    price:1200,
+    price:120,
+    price:12,
+    price:12,
+    price:12,
+    price:12,
+    price:12,
+    price:12,
+    price:120
+  }
+
+   function showdata(data){
+     console.log(data)
+     //console.log(data[0].idMeal)
+     data.map(function(ele){
+     var menu = document.querySelector("#menu");
+
+     var box = document.createElement("div")
+     box.setAttribute('class','g');
+     menu.append(box)
+
+     var image = document.createElement("img")
+     image.setAttribute("src", ele.strMealThumb)
+     box.append(image)
+
+     
+     var price = document.createElement("p")
+     price.textContent=obj.price
+     box.append(price)
+
+     var cat = document.createElement("p")
+     cat.textContent="RS"+  ": "+ele.idMeal
+     box.append(cat)
+
+     var title = document.createElement("p")
+     title.textContent=ele.strMeal
+     box.append(title)
+
+     var btn = document.createElement("button")
+     btn.textContent="Add to cart"
+
+     btn.addEventListener('click',function addcart(){
+       var dataArray = JSON.parse(localStorage.getItem("cart"))||[]
+
+       dataArray.push(ele)
+
+      
+     localStorage.setItem("cart",JSON.stringify(dataArray))
+     console.log(dataArray)
+       console.log(i)
+
+     })
+     box.append(btn)
+
+     });
+
+
+
+   }
+</script>
